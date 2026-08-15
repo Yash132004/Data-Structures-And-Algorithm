@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int numJewelsInStones(string jewels, string stones) {
+        unordered_map<char, int> freq;
+
+    // Step 1: Count frequency of stones
+    for (char c : stones) {
+        freq[c]++;
+    }
+
+    int count = 0;
+
+    // Step 2: Check jewels using find()
+    for (char c : jewels) {
+        if (freq.find(c) != freq.end()) {
+            count += freq[c];
+        }
+    }
+    return count;
+    }
+};
