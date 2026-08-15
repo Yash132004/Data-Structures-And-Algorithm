@@ -1,0 +1,44 @@
+class Solution {
+public:
+    string convert(string s, int numRows) {
+
+        if (numRows == 1 || numRows >= s.size())
+            return s;
+
+        int cnt = 0, i = 0;
+        bool down = true;
+
+        vector<int> ind;
+
+        while (i < s.length()) {
+
+            ind.push_back(cnt);
+
+            if (cnt == 0)
+                down = true;
+            else if (cnt == numRows - 1)
+                down = false;
+
+            if (down)
+                cnt++;
+            else
+                cnt--;
+
+            i++;
+        }
+
+        vector<string> store(numRows, "");
+
+        for (int i = 0; i < s.length(); i++) {
+            store[ind[i]] += s[i];
+        }
+
+        string ans = "";
+
+        for (int i = 0; i < numRows; i++) {
+            ans += store[i];
+        }
+
+        return ans;
+    }
+};
