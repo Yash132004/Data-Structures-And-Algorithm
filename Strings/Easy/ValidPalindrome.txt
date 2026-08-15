@@ -1,0 +1,23 @@
+class Solution {
+public:
+    bool isPalindrome(string s) {
+        int st = 0, e = s.size() - 1;
+
+        while(st<=e){
+
+            //skipping non alphanumeric 
+            while(st < e  && !isalnum(s[st])) st++;
+
+            while(st < e  && !isalnum(s[e])) e--;
+
+            //now comparing ignored cases
+            if(tolower(s[st]) != tolower(s[e])){
+                return false;
+            }
+            st++;
+            e--;
+        }
+        return true;
+        
+    }
+};
