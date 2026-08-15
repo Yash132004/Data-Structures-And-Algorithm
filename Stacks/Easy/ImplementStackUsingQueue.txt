@@ -1,0 +1,26 @@
+class MyStack {
+public:
+    deque<int> que;
+
+    MyStack() {}
+
+    void push(int x) {
+        que.push_back(x);
+    }
+    
+    int pop() {
+        if (que.empty()) return -1;
+        int x = que.back();
+        que.pop_back();
+        return x;
+    }
+    
+    int top() {
+        if (que.empty()) return -1;
+        return que.back();
+    }
+    
+    bool empty() {
+        return que.empty();
+    }
+};

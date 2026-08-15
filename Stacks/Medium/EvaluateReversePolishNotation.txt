@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int evalRPN(vector<string>& tokens) {
+        stack<int> st;
+        //“I am reading each token as a reference and I will NOT modify it.” <- const string& means
+        for(const string& t: tokens){
+            if(t == "+" || t == "-" || t == "*" || t == "/"){
+               int b = st.top(); st.pop();
+               int a = st.top(); st.pop();
+
+                if(t == "+") st.push(a+b);
+                else if(t == "-") st.push(a-b);
+                else if(t == "*") st.push(a*b);
+                else if(t == "/") st.push(a/b);
+            }else{
+                st.push(stoi(t));
+            }
+        } 
+        return st.top();
+    }
+};
