@@ -1,0 +1,30 @@
+class Solution {
+public:
+    int characterReplacement(string s, int k) {
+        vector hash(26, 0);
+        int l = 0, r = 0;
+        int maxLen = 0, maxFreq = 0;
+
+        while (r < s.length()) {
+        //update frequency of current character
+        hash[s[r] - 'A']++;
+
+        //track the highest frequency seen so far in the current window
+        maxFreq = max(maxFreq, hash[s[r] - 'A']);
+
+        //if the window is invalid, shrink from the left
+        //condition: (window length - maxFreq) > k
+        if ((r - l + 1) - maxFreq > k) {
+            hash[s[l] - 'A']--;
+            l++;
+        }
+
+        //update maxLen if the current window is valid
+        if ((r - l + 1) - maxFreq <= k) {
+            maxLen = max(maxLen, r - l + 1);
+        }
+            r++;
+        }
+        return maxLen;
+    }
+};
